@@ -1,0 +1,30 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name:  basicnodeapp
+        image: buildmystartup/basicnodeapp
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: password
+
