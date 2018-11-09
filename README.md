@@ -37,7 +37,7 @@ vents:
 
 ### For basic secrets you need to encode them in base64.
 ```
-To genereate secrets using a yaml file
+To genereate secrets
 
 $ echo -n "root" | base64
 cm9vdA==
