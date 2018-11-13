@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: helloworld-deployment
+  name: helloworld-deployment-secrets
 spec:
   replicas: 3
   template:
