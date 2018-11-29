@@ -58,7 +58,7 @@ data:
   username: cm9vdA==
   password: cGFzc3dvcmQ=
 ```
-### Here is how to verify the secret is working.
+### Here is how to verify the secret env var is working.
 
 ```
 kubectl exec -ti helloworld-deployment-secrets-8cdf77d68-2zrjp -- /bin/bash
@@ -67,3 +67,23 @@ root@helloworld-deployment-secrets-8cdf77d68-2zrjp:/app# echo $SECRET_USERNAME
 admin
 root@helloworld-deployment-secrets-8cdf77d68-2zrjp:/app# echo $SECRET_PASSWORD
 1f2d1e2e67df
+```
+### How to verify the secret from volume is working.
+
+```
+kubectl exec -ti helloworld-deployment-volume-6c46974c97-vhglc -- /bin/bash
+
+root@helloworld-deployment-volume-6c46974c97-vhglc:/app# cd /etc/creds
+root@helloworld-deployment-volume-6c46974c97-vhglc:/etc/creds# ls -al
+total 4
+drwxrwxrwt 3 root root  120 Nov 29 20:07 .
+drwxr-xr-x 1 root root 4096 Nov 29 20:07 ..
+drwxr-xr-x 2 root root   80 Nov 29 20:07 ..2018_11_29_20_07_01.915754167
+lrwxrwxrwx 1 root root   31 Nov 29 20:07 ..data -> ..2018_11_29_20_07_01.915754167
+lrwxrwxrwx 1 root root   15 Nov 29 20:07 password -> ..data/password
+lrwxrwxrwx 1 root root   15 Nov 29 20:07 username -> ..data/username
+root@helloworld-deployment-volume-6c46974c97-vhglc:/etc/creds# cat password 
+passwordroot@helloworld-deployment-volume-6c46974c97-vhglc:/etc/creds# cat username 
+rootroot@helloworld-deployment-volume-6c46974c97-vhglc:/etc/creds# 
+
+```
