@@ -58,3 +58,12 @@ data:
   username: cm9vdA==
   password: cGFzc3dvcmQ=
 ```
+### Here is how to verify the secret is working.
+
+```
+kubectl exec -ti helloworld-deployment-secrets-8cdf77d68-2zrjp -- /bin/bash
+
+root@helloworld-deployment-secrets-8cdf77d68-2zrjp:/app# echo $SECRET_USERNAME 
+admin
+root@helloworld-deployment-secrets-8cdf77d68-2zrjp:/app# echo $SECRET_PASSWORD
+1f2d1e2e67df
